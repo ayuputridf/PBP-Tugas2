@@ -19,7 +19,7 @@ After completing this tutorial, you are expected to be able to:
 
 ## Chart of Client Requests to Django-Based Web Applications and Responses
 
-![image.png](Image Request Client/Request Client Django.png)
+![image.png](Gambar/Request.png)
 
 `urls.py` : This is the URL* declaration for the Django project; Contains the URL configuration for the project that we created.
 

@@ -19,7 +19,7 @@ Setelah menyelesaikan tutorial ini, diharapkan untuk dapat:
 
 ## Bagan Request Client ke Web Aplikasi Berbasis Django Beserta Responnya
 
-![image.png]("G:\My Drive\1.Akademik\SEM 3\PBP\PBP-Tugas2\Gambar\Request.png")
+![image.png](Gambar/Request.png)
 
 `urls.py`     : Merupakan deklarasi URL* untuk project Django; Berisi konfigurasi URL pada project yang kita buat.
 
