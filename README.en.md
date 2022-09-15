@@ -4,98 +4,197 @@ Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer S
 
 *Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
 
-## Introduction
+Heroku App Link = `https://pbp-task2-ayu.herokuapp.com/katalog/`
 
-This repository is a template that is designed to help students who take the Platform-Based Development/Programming Course (CSGE602022) to know the structure of a Django Web application project, including the files and configurations that are important in running the application. You can freely copy the contents of this repository or utilise this repository as a learning material and also as a starting code to build a Django Web application project.
+## Learning objectives
 
-## How to Use
+After completing this tutorial, you are expected to be able to:
 
-If you want to use the code template in this repository as a starter code for
-developing a Django Web application:
+1. Understand the chart containing client requests to Django-based web applications and their responses.
+2. Knowing the importance of *virtual environment* in making *web* applications based on Django
+3. Understand how to create a function in `views.py` which can fetch data from *model* and return it to an HTML.
+4. Create a *routing* to map the function you created to `views.py`.
+5. Map the data obtained into HTML with the syntax from Django for mapping template data.
+6. Do *deploy* the Django application on Heroku.
 
-1. Open the GitHub page of the code template repository and click "**Use this template**"
-   button to make a copy of the repository into your own GitHub account.
-2. Clone the new Django template repository from your GitHub account to a
-   location in the filesystem of your local development environment by using
-   Git:
+## Chart of Client Requests to Django-Based Web Applications and Responses
+
+![image.png](Image Request Client/Request Client Django.png)
+
+`urls.py` : This is the URL* declaration for the Django project; Contains the URL configuration for the project that we created.
+
+`views.py` : Serves as the main logic of the application that will perform processing of incoming requests
+
+`models.py` : More focused as objects that define entities in the database and their configurations
+
+`html file` : It will contain the mapping that has been defined before being returned to the user as a response
+
+###### The link between the 4 files is in the Django processed request flow:
+   1. Requests that enter the Django *server* will be processed via `urls` to be forwarded to the `view`s defined by the developer to process the request.
+
+   2. If there is a process that requires the involvement of *database*, then later `views` will call *query* to `models` and *database* will return the result of the query to `views`
+
+   3. After the request has been processed, the results of the process will be mapped into the HTML that has been defined before finally the HTML is returned to the user as a *response*.
+
+## Importance of Virtual Environment
+
+When a program is run in a Virtual Environment, it has its own modules which external programs cannot access. In other words, Virtual Environment is a tool used to create a virtual python environment that cannot be accessed from the outside world or isolated.
+
+###### The reason why we need *virtual environment*
+
+1. So that each application has its own module
+2. Can you specify which version of Django you want to use?
+
+This is useful if we create an application project using django 1.1 then the application will run perfectly using version 1.1, but if the latest version of django is released later, we have to upgrade the module.
+
+But the fact is that the application that has been made does not run with the latest version of the module because of many changes in function and there are also other application projects that are required to use the latest version of the module. Then we need a virtual environment
+
+###### What happens when you don't activate *virtual environment*
+
+We can still create Django-based web applications without using a virtual environment, but the risk is that if we update Django and it turns out that the project we created doesn't support the latest Django, our project can get an error.
+
+## Tutorial: Implementation of Basic Views
+
+#### Create a function in `views.py` that can fetch data from the model and return it to an HTML
+
+   1. Open `views.py` which is in the `catalog` folder and create a function that accepts the `request` parameter and returns `render(request, "catalog.html")`. The example is :
+
+      ```shell
+      def show_katalog(request):
+         return render(request, "catalog.html")
+      ```
+   2. Create a folder named `templates` in the application folder `catalog` and create a file named `catalog.html`. The contents of `katalog.html` can be filled by the following *templates.
+
+      ```shell
+      {% extends 'base.html' %}
+
+      {% block content %}
+      <h5>Name: </h5>
+      <p>Fill me!</p>
+
+      <table>
+         <tr>
+         <th>Item Name</th>
+         <th>Item Price</th>
+         <th>Description</th>
+         </tr>
+         {% comment %} Add data below this line {% endcomment %}
+      </table>
+
+      {% endblock content %}
+      ```
+
+#### Create a route to map the created function to `views.py`.
+   
+   1. Create a file in the `catalog` application folder named `urls.py` to do *routing* the `views` function that has been created so that later HTML pages can be displayed via your *browser*. The contents of the `urls.py` are as follows.
+
+      ```shell
+      from django.urls import path
+      from catalog.views import show_katalog
+
+      app_name = 'catalog'
+
+      urlpatterns = [
+         path('', show_catalog, name='show_catalog'),
+      ]
+      ```
+
+   2. Also register the `catalog` application into `urls.py` which is in the `project_django` folder by adding the following code snippet to the `urlpatterns` variable.
+
+      ```shell
+      path('catalog/', include('catalog.urls')),
+      ```
+
+   3. Run your Django project with `python manage.py runserver` command and open `http://localhost:8000/catalog/` in the browser to see the created page.
+
+## Tutorial: Connecting Models with Views and Templates
+
+#### Map the retrieved data into HTML with the syntax from Django for template data mapping.
+
+   1. In the created *views* function, import the previously created *models* into the `views.py` file. You will use the *class* to retrieve data from the *database*. Examples are:
+
+      ```shell
+      from django.shortcuts import render
+      from catalog.models import CatalogItem
+      ```
+
+   2. Add the code snippet below into the previously created `show_catalog` function. This code snippet serves to call the *query* function to the *database model* and store the results of the *query* into a variable.
+
+      * You can change the Variable Sis Cinoy according to the name you want *
+
+      ```shell
+      data_goods_catalog = CatalogItem.objects.all()
+      context = {
+         'list_goods': data_goods_catalog,
+         'name': 'Sis Cinoy'
+      }
+      ```
+
+   3. Add `context` as the third parameter to the return of the *render* function in the function you created earlier. The data contained in the `context` variable will also be rendered by Django so that later you can display the data on an HTML page.
+   
+      ```shell
+      return render(request, "catalog.html", context)
+      ```
+
+ To do this mapping, you can use the special template syntax found in Django, namely `{{data}}`.
+
+   1. Open the HTML file that was created earlier in the *templates* folder in the catalog directory.
+
+   2. `Change Fill me!` in HTML tag `<p>` to `{{name}}` to display your name in HTML page. Examples are:
+
+      ```shell
+      <h5>Name: </h5>
+      <b>{{name}}</b>
+      ```
+
+3. To display a list of items into a table, you need to iterate over the `list_goods` variable that you have rendered into the HTML. Note that you cannot call the item list directly like you did in step 2 because the `list_item` variable is a container containing objects. You also need to call the specific variable/attribute name of the object in the container to call the data from that object. Examples are:
 
    ```shell
-   git clone <URL to your repository on GitHub> <path in local development environment>
+   {% comment %} Add data below this line {% endcomment %}
+   {% for items in list_barang%}
+      <tr>
+         <th>{{item.name_item}}</th>
+         <th>{{item.price_item}}</th>
+         <th>{{item.description}}</th>
+      </tr>
+   {% endfor %}
    ```
-3. Go to the location where the cloned repository is located in the local
-   development environment:
+
+Now, try to *refresh* the page, if the changes appear then congratulations! You have successfully connected `models` with `views` and `templates` while learning the basics of Django's *template* syntax.
+
+Next, please `add`, `commit`, and `push` the changes you have made to save them to the GitHub repository.
+
+
+## Tutorial: Deploy Django App to Heroku
+
+#### Do *deploy* to Heroku the application that has been made so that later it can be accessed by your friends via the Internet.
+
+In this template, deployment is done by utilizing GitHub Actions as the _runner_ and Heroku as the application hosting platform.
+
+   1. Create a Heroku app with the name you want
+
+   2. Open your GitHub repository configuration and go to the Secrets section for GitHub Actions (`Settings -> Secrets -> Actions`).
+   
+   3. Add a new `repository secret` variable to do *deployment*. The Name-Value pair of the variables that you will create you can take from the information you noted in the previous text file. Examples are as follows.
 
    ```shell
-   cd <path to the cloned repository>
+   (NAME)HEROKU_APP_NAME
+   (VALUE)MY-APPLICATION
    ```
-4. Create a Python virtual environment named `env` inside the cloned repository
-   by using Python's `venv` module:
+4. Enter the Heroku application that has been created then click the Deploy icon available
 
-   ```shell
-   python -m venv env
-   ```
-5. Activate the virtual environment:
+   5. Scroll down and click *connect to Github* to connect the Heroku app with your Github.\
 
-   ```shell
-   # Windows
-   .\env\Scripts\activate
-   # Linux/Unix, e.g. Ubuntu, MacOS
-   source env/bin/activate
-   ```
-6. Verify the virtual environment has been activated by looking at the prompt
-   of your shell. Make sure there is a `env` prefix in your shell. For example:
+   6. Click deploy at the bottom after *connect to Github*
 
-   ```shell
-   # Windows using `pwsh` shell
-   (env) PS C:\Users\RickeyAstley\my-django-app
-   # Linux/Unix, e.g. Ubuntu using `bash` shell
-   (env) rickeyastley@ubuntu:~/my-django-app
-   ```
+   7. Go to the GitHub Actions tab and rerun the failed workflow.
 
-   > Note: You can use [Visual Studio Code][] (with Python extension) or [PyCharm][]
-   > to open the source code directory that has a virtual environment directory.
-   > Both will detect the virtual environment and use the correct Python virtual
-   > environment. Furthermore, you can also run your shell directly in both text
-   > editor/IDE.
-7. Install the dependencies needed to build, test, and run the application:
-
-   ```shell
-   pip install -r requirements.txt
-   ```
-8. Run the Django Web application using local development server:
-
-   ```shell
-   python manage.py runserver
-   ```
-9. Open http://localhost:8000 in your favourite Web browser to see if the Web
-   application is running.
-
-## Deployment Example
-
-The code template provided a GitHub workflow to deploy the sample Django Web
-application to [Heroku][], which is a Platform-as-a-Service (PaaS) provider
-that lets you to build and run a Web application on their infrastructure. You
-can read the instructions at [Tutorial 0][] to figure out how to configure the
-GitHub Actions to run the provided workflow in your repository.
-
-For reference, the deployed Django Web application example from the original
-code template repository can be found at: https://django-pbp-template.herokuapp.com.
-
-## Next Actions
-
-If you have successfully created your own repository and set up the Django Web
-application project, you can start working on the weekly tutorials and assignments
-related to Django Web application development. 
-
-If you found any issues or have ideas to improve the code template, feel free
-to discuss your proposal via the [issue tracker](https://github.com/pbp-fasilkom-ui/django-pbp-template/issues)
-and create a Pull Request (PR) containing your changes to the code template.
+After your workflow is restarted and the deployment status is successful (you can see there is a green check symbol in your repository), you can access your application at https://<heroku-application-name>.herokuapp.com. Happy! Now your Django application is accessible on the Internet.
 
 ## Credits
 
-This template was based on [PBP Odd Term 2021/2022](https://gitlab.com/PBP-2021/pbp-lab) written by 2021 Platform Based Programming Teaching Team ([@prakashdivyy](https://gitlab.com/prakashdivyy)) and [django-template-heroku](https://github.com/laymonage/django-template-heroku) written by [@laymonage, et al.](https://github.com/laymonage). This template is designed in such a way so that students can use this template as a starter and reference in doing assignments and their work.
+This template is based on [PBP Odd 2021](https://gitlab.com/PBP-2021/pbp-lab) written by the 2021 Platform-Based Programming Teaching Team ([@prakashdivyy](https://gitlab.com/prakashdivyy )) and [django-template-heroku](https://github.com/laymonage/django-template-heroku) written by [@laymonage, et al.](https://github.com/laymonage).
 
 [Heroku]: https://www.heroku.com/
-[Tutorial 0]: https://pbp-fasilkom-ui.github.io/ganjil-2023/en/assignments/tutorial/tutorial-0
 [Visual Studio Code]: https://code.visualstudio.com/
 [PyCharm]: https://www.jetbrains.com/pycharm/

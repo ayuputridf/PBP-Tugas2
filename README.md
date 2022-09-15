@@ -1,3 +1,9 @@
+# Template Proyek Django PBP
+
+Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu Komputer Universitas Indonesia, Semester Ganjil 2022/2023
+
+*Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
+
 Link Aplikasi Heroku =  `https://pbp-tugas2-ayu.herokuapp.com/katalog/`
 
 ## Tujuan Pembelajaran
@@ -13,15 +19,15 @@ Setelah menyelesaikan tutorial ini, diharapkan untuk dapat:
 
 ## Bagan Request Client ke Web Aplikasi Berbasis Django Beserta Responnya
 
-![image.png]( {link gambar} )
+![image.png](Gambar Request Client/Request Client Django.png)
 
-`urls.py`     : merupakan deklarasi URL* untuk project Django; Berisi konfigurasi URL pada project yang kita buat.
+`urls.py`     : Merupakan deklarasi URL* untuk project Django; Berisi konfigurasi URL pada project yang kita buat.
 
-`views.py`    : berperan sebagai logika utama dari aplikasi yang akan melakukan pemrosesan terhadap permintaan yang masuk
+`views.py`    : Berperan sebagai logika utama dari aplikasi yang akan melakukan pemrosesan terhadap permintaan yang masuk
 
-`models.py`   : lebih difokuskan sebagai objek yang mendefinisikan entitas pada database beserta konfigurasinya
+`models.py`   : Lebih difokuskan sebagai objek yang mendefinisikan entitas pada database beserta konfigurasinya
 
-`berkas html` :
+`berkas html` : Nantinya akan berisi pemetaan yang sudah didefinisikan sebelum akhirnya dikembalikan ke user sebagai response
 
 ###### Kaitan antara 4 file tersebut yaitu pada alur permintaan diproses Django :
    1. Permintaan yang masuk ke dalam *server* Django akan diproses melalui `urls` untuk diteruskan ke `view`s yang didefinisikan oleh pengembang untuk memproses permintaan tersebut.
@@ -167,20 +173,30 @@ Selanjutnya, silakan lakukan `add`, `commit`, dan `push` perubahan yang sudah ka
 
 Pada template ini, deployment dilakukan dengan memanfaatkan GitHub Actions sebagai _runner_ dan Heroku sebagai platform Hosting aplikasi. 
 
-Untuk melakukan deployment, dapat melihat instruksi yang ada pada [Tutorial 0](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-0).
+   1. Buat aplikasi Heroku dengan nama yang kamu inginkan
 
+   2. Bukalah konfigurasi repositori GitHub kamu dan bukalah bagian Secrets untuk GitHub Actions (`Settings -> Secrets -> Actions`).
+   
+   3. Tambahkan variabel `repository secret` baru untuk melakukan *deployment*. Pasangan Name-Value dari variabel yang akan kamu buat dapat kamu ambil dari informasi yang kamu catat pada file teks sebelumnya. Contohnya adalah sebagai berikut.
 
+   ```shell
+   (NAME)HEROKU_APP_NAME
+   (VALUE)APLIKASI-SAYA
+   ```
+   4. Masuk ke aplikasi Heroku yang telah dibuat lalu klik icon Deploy yang tersedia
 
+   5. Scroll down dan klik *connect to Github* untuk menyambungkan aplikasi Heroku dengan Github kamu.\
 
+   6. Klik deploy pada bagian bawah setelah *connect to Github*
 
+   7. Bukalah tab GitHub Actions dan jalankan kembali workflow yang gagal.
 
-
-
-
-
-
-
+Setelah workflow kamu jalankan kembali dan status deployment menjadi sukses (dapat kamu lihat terdapat simbol centang hijau pada repositori kamu), kamu dapat mengakses aplikasi milikmu di https://<nama-aplikasi-heroku>.herokuapp.com. Selamat! Sekarang aplikasi Django milikmu dapat diakses di Internet.
 
 ## Credits
 
-Template ini dibuat berdasarkan [PBP Ganjil 2021](https://gitlab.com/PBP-2021/pbp-lab) yang ditulis oleh Tim Pengajar Pemrograman Berbasis Platform 2021 ([@prakashdivyy](https://gitlab.com/prakashdivyy)) dan [django-template-heroku](https://github.com/laymonage/django-template-heroku) yang ditulis oleh [@laymonage, et al.](https://github.com/laymonage). Template ini dirancang sedemikian rupa sehingga mahasiswa dapat menjadikan template ini sebagai awalan serta acuan dalam mengerjakan tugas maupun dalam berkarya.
+Template ini dibuat berdasarkan [PBP Ganjil 2021](https://gitlab.com/PBP-2021/pbp-lab) yang ditulis oleh Tim Pengajar Pemrograman Berbasis Platform 2021 ([@prakashdivyy](https://gitlab.com/prakashdivyy)) dan [django-template-heroku](https://github.com/laymonage/django-template-heroku) yang ditulis oleh [@laymonage, et al.](https://github.com/laymonage).
+
+[Heroku]: https://www.heroku.com/
+[Visual Studio Code]: https://code.visualstudio.com/
+[PyCharm]: https://www.jetbrains.com/pycharm/
