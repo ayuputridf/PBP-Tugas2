@@ -11,3 +11,4 @@ def show_katalog(request):
     'ID': '2106654845',
     }
     return render(request, "katalog.html", context)
+

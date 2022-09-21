@@ -1,0 +1,117 @@
+[
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":1,
+        "fields":{
+            "watched":false,
+            "title":"Miracle in Cell No 7",
+            "rating":10,
+            "release_date":"2022-09-08",
+            "review":"People said that if you watch this, you're gonna cry"
+        }
+},
+{
+        "model":"mywatchlist.MyWatchList",
+        "pk":2,
+        "fields":{
+            "watched":true,
+            "title":"Mencuri Raden Saleh",
+            "rating":9,
+            "release_date":"2022-09-08",
+            "review":"Omg most people recommend this one but I haven't watch till now :("
+        }
+
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":3,
+        "fields":{
+            "watched":true,
+            "title":"Jurassic World",
+            "rating":8,
+            "release_date":"2022-09-08",
+            "review":"Scenery of the movie was incredible!"
+        }
+
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":4,
+        "fields":{
+            "watched":false,
+            "title":"Sayap-Sayap Patah",
+            "rating":8,
+            "release_date":"2022-09-08",
+            "review":"People said that this movie was heartbreaking, I'm gonna watch!"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":5,
+        "fields":{
+            "watched":true,
+            "title":"Orphan First Kill",
+            "rating":8,
+            "release_date":"2022-08-19",
+            "review":"Got shocked by the plot twist?!"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":6,
+        "fields":{
+            "watched":false,
+            "title":"Pengabdi Setan 2: Communion",
+            "rating":4,
+            "release_date":"2022-09-08",
+            "review":"Not gonna watch it, bcs ppl said it was really scary!!!"
+        }
+
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":7,
+        "fields":{
+            "watched":true,
+            "title":"Dear Nathan",
+            "rating":9,
+            "release_date":"2017-03-23",
+            "review":"Romance thing"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":8,
+        "fields":{
+            "watched":true,
+            "title":"5 CM",
+            "rating":10,
+            "release_date":"2012-12-12",
+            "review":"This one my favo!!"
+        }
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":9,
+        "fields":{
+            "watched":true,
+            "title":"The K2",
+            "rating":10,
+            "release_date":"2016-09-23",
+            "review":"You just have to watch it!"
+        }
+
+    },
+    {
+        "model":"mywatchlist.MyWatchList",
+        "pk":10,
+        "fields":{
+            "watched":false,
+            "title":"Godzilla vs Kong",
+            "rating":7,
+            "release_date":"2022-09-08",
+            "review":"Hmm I dont think I like this kind of movie"
+        }
+    }
+
+]

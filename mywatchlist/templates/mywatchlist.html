@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="background-image: url('https://i.ibb.co/qMGPg9K/gradient-blur-pink-blue-abstract-background-53876-117324.jpg');">
+  
+<h1  style="background-color: #ad8c98; color: white; text-align:center">Movie List</h1>
+
+<h5 style="text-align:center">Name: </h5>
+<p style="text-align:center">{{nama}}</p>
+
+<h5 style="text-align:center">Student ID: </h5>
+<p style="text-align:center">{{id}}</p>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Movie Watched?</th>
+        <th>Movie Title</th>
+        <th>Rating</th>
+        <th>Release Date</th>
+        <th>Review</th>
+    </tr>
+
+    {% for movie in list_movie %}
+    <tr>
+        <th>{{movie.watched}}</th>
+        <th>{{movie.title}}</th>
+        <th>{{movie.rating}}</th>
+        <th>{{movie.release_date}}</th>
+        <th>{{movie.review}}</th>
+        </th>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock content %}
