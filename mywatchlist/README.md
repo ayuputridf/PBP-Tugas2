@@ -4,7 +4,10 @@ Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu 
 
 *Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
 
-Link Aplikasi Heroku =  `https://pbp-tugas3-ayu.herokuapp.com/mywatchlist/`
+[Link to HTML](https://pbp-tugas3-ayu.herokuapp.com/mywatchlist/html/)
+[Link to JSON](https://pbp-tugas3-ayu.herokuapp.com/mywatchlist/json/)
+[Link to XML](https://pbp-tugas3-ayu.herokuapp.com/mywatchlist/xml/)
+
 
 ## Tujuan Pembelajaran
 
@@ -178,9 +181,9 @@ Data Delivery diperlukan untuk mempermudah proses pengiriman data dari satu stac
 
 
 ## Postman
-![image.png](Gambar/Request.png)
-![image.png](Gambar/Request.png)
-![image.png](Gambar/Request.png)
+![Postman HTML](/mywatchlist/assets_postman/POSTMAN_html.jpg)
+![Postman JSON](/mywatchlist/assets_postman/POSTMAN_json.jpg)
+![Postman XML](/mywatchlist/assets_postman/POSTMAN_xml.jpg)
 
 
 [Heroku]: https://www.heroku.com/
