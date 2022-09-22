@@ -181,9 +181,9 @@ Data Delivery diperlukan untuk mempermudah proses pengiriman data dari satu stac
 
 
 ## Postman
-![image.jpg](/mywatchlist/assets_postman/POSTMAN_html.jpg)
-![image.jpg](/mywatchlist/assets_postman/POSTMAN_json.jpg)
-![image.jpg](/mywatchlist/assets_postman/POSTMAN_xml.jpg)
+![image.jpg](mywatchlist/assets_postman/POSTMAN_html.jpg)
+![image.jpg](mywatchlist/assets_postman/POSTMAN_json.jpg)
+![image.jpg](mywatchlist/assets_postman/POSTMAN_xml.jpg)
 
 [Heroku]: https://www.heroku.com/
 [Visual Studio Code]: https://code.visualstudio.com/
