@@ -18,11 +18,10 @@ def show_todolist(request):
     return render(request, "todolist.html", context)
 
 
-
 def tambah_task(request):
     context = {}
     if request.method == "POST":
-        temp = ToDoList(user=request.user, title=request.POST.get('todolist'), description=request.POST.get('description'))
+        temp = ToDoList(user=request.user, title=request.POST.get('whattodo'), description=request.POST.get('description'))
         temp.save()
         return redirect('todolist:show_todolist')
     return render(request, "add-task.html",context)
