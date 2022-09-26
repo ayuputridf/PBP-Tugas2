@@ -56,7 +56,7 @@ Selanjutnya terjadi penyimpanan data pada database dan munculnya data yang telah
    3. Buka file `models.py` yang ada di folder `todolist` dan tambahkan class model yang diinginkan.
    4. Lakukan perintah `python manage.py makemigrations` untuk mempersiapkan migrasi skema model ke dalam database Django lokal.
    5. Jalankan perintah `python manage.py migrate` untuk menerapkan skema model yang telah dibuat ke dalam database Django lokal.
-
+ 
 ### C. Implementasi Views Dasar
 
    1. Buka `views.py` yang ada pada folder `todolist` dan buatlah fungsi yang menerima parameter    `request` dan mengembalikan `render(request, "todolist.html")`. 
