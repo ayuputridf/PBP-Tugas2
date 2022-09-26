@@ -13,17 +13,21 @@
         <th>Date</th>
         <th>TO DO LIST</th>
         <th>Description</th>
+        <th>Delete Task</th>
     </tr>
     {% for todolist in isi_todolist %}
     <tr>
         <th>{{todolist.date}}</th>
         <th>{{todolist.title}}</th>
         <th>{{todolist.description}}</th>
+        <th><a href="{% url 'todolist:hapustask' todolist.pk %}"><button>Delete</button></th>
     </tr>
 {% endfor %}
 </table>
 
-<button><a href="{% url 'todolist:add-task' %}">Tambah Task Baru</a></button>
+<p align="center">
+<button><a href="{% url 'todolist:newtask' %}">Add New Task</a></button>
 <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+</p>
 
 {% endblock content %}

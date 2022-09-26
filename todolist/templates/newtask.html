@@ -9,28 +9,20 @@
 <p style="text-align:center">{{nama}}</p>
 
 <form method="POST" action="">
-
     {% csrf_token %}
-
     <table border="1" cellpadding="5" align="center">
         <tr>
             <td>TO DO LIST : </td>
-            <td><input type="text" name="whattodo" placeholder="TO DO" class="form-control"></td>
-        </tr>
-                
+            <td><input type="text" name="whattodo" placeholder="TO DO LIST" class="form-control"></td>
+        </tr>   
         <tr>
             <td>Description: </td>
             <td><input type="text" name="description" placeholder="DESCRIPTION" class="form-control"></td>
         </tr>
-
         <tr>
             <td></td>
-            <td><input class="btn login_btn" type="submit" value="Submit" href="{% url 'todolist:show_todolist' %}"></td>
+            <td><input class="btn login_btn" type="submit" value="Add Task" href="{% url 'todolist:show_todolist' %}"></td>
         </tr>
-    </table>
-        
+    </table>     
 </form>
-
-
-
 {% endblock content %}

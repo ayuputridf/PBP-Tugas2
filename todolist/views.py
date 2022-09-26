@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
+
 def show_todolist(request):
     data_todolist = ToDoList.objects.filter(user=request.user)
     context = {
@@ -21,11 +22,16 @@ def show_todolist(request):
 def tambah_task(request):
     context = {}
     if request.method == "POST":
-        temp = ToDoList(user=request.user, title=request.POST.get('whattodo'), description=request.POST.get('description'))
-        temp.save()
+        data = ToDoList(user=request.user, title=request.POST.get('whattodo'), description=request.POST.get('description'))
+        data.save()
         return redirect('todolist:show_todolist')
-    return render(request, "add-task.html",context)
+    return render(request, "newtask.html",context)
 
+def hapustask(request, pk):
+    data = ToDoList.objects.filter(pk=pk)
+    data.delete()
+    return redirect('todolist:show_todolist')
+    
 def register(request):
     form = UserCreationForm()
 
