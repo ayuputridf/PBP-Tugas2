@@ -25,7 +25,7 @@ def tambah_task(request):
         data = ToDoList(user=request.user, title=request.POST.get('whattodo'), description=request.POST.get('description'))
         data.save()
         return redirect('todolist:show_todolist')
-    return render(request, "newtask.html",context)
+    return render(request, "create-task.html",context)
 
 def hapustask(request, pk):
     data = ToDoList.objects.filter(pk=pk)
