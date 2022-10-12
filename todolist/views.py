@@ -13,9 +13,9 @@ from datetime import date
 def show_todolist(request):
     data = Task.objects.filter(user=request.user).all()
     context = {
-        'isi_todo_list': data,
-        'name': 'Ayu Putri DF',
-        'id': '2106654845',
+        'todo_list': data,
+        'name': 'Devina Hana',
+        'id': '2106751032',
     }
     return render(request, "todolist.html", context)
 
