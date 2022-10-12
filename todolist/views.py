@@ -50,6 +50,13 @@ def hapustask(request, pk):
     data.delete()
     return redirect('todolist:show_todolist')
  
+def ubahstatus(request, id):
+    task = Task.objects.get(pk=id) 
+    if (not task.is_finished):
+        task.is_finished = True
+    task.save()
+    return redirect('todolist:show_todolist')
+
 def register(request):
     form = UserCreationForm()
 

@@ -1,33 +1,97 @@
 {% extends 'base.html' %}
 
-{% block content %}
+  {% block content %}
 
-<div style="background-image: url('https://i.ibb.co/qMGPg9K/gradient-blur-pink-blue-abstract-background-53876-117324.jpg');">
-<h1  style="background-color: #ad8c98; color: white; text-align:center">TO DO LIST</h1>
+  <style>
+  
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 40%;    
+      border-radius: 5px;
+      background-color: rgb(254, 224, 229);
+    }
+    
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); 
+      background-color: rgb(7, 5, 5); 
+      color: white;  
+    }
 
-<h4 style="text-align:center">Name: </h5>
-<p style="text-align:center">{{nama}}</p>
+    .container {
+      padding: 2px 16px;
+    }
+  
+    .content {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
+  </style>
 
-<table border="1" cellpadding="5" align="center">
-    <tr>
-        <th>Date</th>
-        <th>TO DO LIST</th>
-        <th>Description</th>
-        <th>Delete Task</th>
-    </tr>
-    {% for todolist in isi_todolist %}
-    <tr>
-        <th>{{todolist.date}}</th>
-        <th>{{todolist.title}}</th>
-        <th>{{todolist.description}}</th>
-        <th><a href="{% url 'todolist:hapustask' todolist.pk %}"><button>Delete</button></th>
-    </tr>
-{% endfor %}
-</table>
 
-<p align="center">
-<button><a href="{% url 'todolist:create-task' %}">Add New Task</a></button>
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
-</p>
+  <h1 style="margin-top:7px; padding-top: 70px; padding-bottom:15px ;font-size: 40px;" class="font-monospace fw-semibold text-center">To Do List</h1>
 
-{% endblock content %}
+  <header>
+    <nav class="navbar navbar-expand-lg bg-light bg-gradient fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#main-table">Hi, {{user.username}}!</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item" style="margin: 5px;">
+                <a class="btn btn-dark" href="{% url 'todolist:tambah_task' %}" role="button">Tambah Task Baru</a>
+              </li>
+              <li class="nav-item" style="margin: 5px;">
+                <a class="btn btn-dark" href="{% url 'todolist:logout' %}" role="button">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+  </header>
+  
+  
+  <div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 g-4 md:justify-end gap-4">
+      {% for todo in todo_list %}
+        <div class="card col-sm-4 mb-1 mt-4 mx-auto" style="width: 18rem;">
+          <div class="card-body">
+            <h4 class="card-title text-center fw-semibold">{{ todo.title }}</h4>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-secondary">{{ todo.date }}</li>
+              <li class="list-group-item">{{ todo.description }}</li>
+            </ul>
+          </div>
+          <div class="card-footer text-center">
+            {% if todo.is_finished %}
+            <p style="font-weight:bold; color:green;">Done</p>
+            {% else %}
+            <p style="font-weight:bold; color:red;">Not Done</p>
+            {% endif %}
+            <button type="button" class="btn btn-dark" style="float:left;"><a class="text-light" href="{% url 'todolist:ubahstatus' todo.pk %}" style="text-decoration:solid ">Finish Task</a></button>
+            <button type="button" class="btn btn-dark" style="float:right;"><a class="text-light" href="{% url 'todolist:hapustask' todo.pk %}" style="text-decoration:solid ">Delete Task</a></button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div> 
+  </div>
+  <br>
+
+ {% endblock content %}

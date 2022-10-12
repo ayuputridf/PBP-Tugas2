@@ -1,28 +1,43 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+<title>Create New Task</title>
+{% endblock meta %}
+
 {% block content %}
 
-<div style="background-image: url('https://i.ibb.co/qMGPg9K/gradient-blur-pink-blue-abstract-background-53876-117324.jpg');">
-<h1  style="background-color: #ad8c98; color: white; text-align:center">NEW TASK</h1>
+<style>
+    input, textarea {
+        padding: 0.5rem;
+        border: 1px solid;
+        border-radius: 8px;
+        width: 100%
+    }
+</style>
 
-<h4 style="text-align:center">Name: </h5>
-<p style="text-align:center">{{nama}}</p>
+<div class="position-relative mx-auto container flex flex-col gap-4 pt-8" style="margin-top: 15px; text-align: center">
+    <div class ="rounded-lg p-4 flex flex-col gap-4 mx-auto bg-base-100;" >
+    
+        <h1 style="padding-bottom: 10px; font-size: 40px;" class="font-monospace fw-semibold text-center">New Task</h1>
+    
+        <form method="POST" action="" style="display: inline-block;">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td colspan="2"><input style="width: 100%; margin-top: 20px; margin-bottom: 7px;" class="btn btn btn-dark" type="submit" name="submit" value="Create"></td>
+                </tr>
+            </table>
+        </form>
+    
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}     
+    </div>
+</div>
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <table border="1" cellpadding="5" align="center">
-        <tr>
-            <td>TO DO LIST : </td>
-            <td><input type="text" name="whattodo" placeholder="TO DO LIST" class="form-control"></td>
-        </tr>   
-        <tr>
-            <td>Description: </td>
-            <td><input type="text" name="description" placeholder="DESCRIPTION" class="form-control"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input class="btn login_btn" type="submit" value="Add Task" href="{% url 'todolist:show_todolist' %}"></td>
-        </tr>
-    </table>     
-</form>
 {% endblock content %}
