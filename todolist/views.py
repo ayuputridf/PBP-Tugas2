@@ -13,7 +13,7 @@ from datetime import date
 def show_todolist(request):
     data = Task.objects.filter(user=request.user).all()
     context = {
-        'todo_list': data,
+        'isi_todo_list': data,
         'name': 'Ayu Putri DF',
         'id': '2106654845',
     }
