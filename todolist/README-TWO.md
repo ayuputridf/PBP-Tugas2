@@ -42,4 +42,58 @@ Kekurangan : lama waktu eksekusi (harus nunggu task lain selesai), gabisa buat w
 * Jadi ketika menerapkan AJAX, ada bnyk metode yg bisa dipakai salah satunya : XHR (XMLHTTPRequest), JQuery, Fetch
 Untuk contoh penerapannya bisa dilihat dari source berikut : [Contoh Penerapan](https://www.dicoding.com/blog/mengenal-fungsi-asynchronous-request-pada-javascript/)  
 
-## Cara Implementasi
+## Cara Implementasi Checklist 
+
+* AJAX GET
+
+ 1. Membuat view baru yang mengembalikan seluruh data task dalam bentuk JSON.
+
+```shell
+def show_json(request):
+    data = ToDoList.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+
+ 2. Membuat path /todolist/json yang mengarah ke view yang baru dibuat.
+```shell
+path('json/', show_json, name='show_json'),
+```
+
+ 3. Lakukan pengambilan task menggunakan AJAX GET.
+ 
+ * AJAX POST
+
+ 1. Membuat sebuah tombol Add Task yang membuka sebuah modal dengan form untuk menambahkan task. &  view baru untuk menambahkan task baru ke dalam database.
+
+```shell
+ def add_task(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        new_task = ToDoList(
+            date=str(date.today()),
+            title=title, 
+            description=description,
+            user=request.user,
+        )
+        new_task.save()
+    return redirect('todolist:show_todolist_ajax')
+```
+ 
+ 2. Membuat path /todolist/add yang mengarah ke view yang baru dibuat.
+
+```shell
+path('add/', add_task, name='add_task'),
+```
+
+ 3. Menghubungkan form yang telah dibuat di dalam modal ke path /todolist/add
+
+ Tutup modal setelah penambahan task telah berhasil dilakukan.
+
+ 4. Membentuk form penambahan Task pada modal dan button Create yang terhubung dengan AJAX
+ 
+ 5. Membuat fungsi yang bisa merespons event klik button Create dengan mengambil data dari form dan memanggil fungsi add_task
+ 
+ 6. Membuat fungsi fetchData & update untuk melakukan update template dengan GET data dari JSON yang memanfaatkan fungsi show_json
+
+ 
