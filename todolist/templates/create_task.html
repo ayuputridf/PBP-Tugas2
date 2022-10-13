@@ -8,18 +8,19 @@
 
 <style>
     input, textarea {
-        padding: 0.5rem;
-        border: 1px solid;
-        border-radius: 8px;
+        padding: 0.6rem;
+        border:  0.5px solid;
+        border-radius: 10px;
         width: 100%
     }
 </style>
 
-<div class="position-relative mx-auto container flex flex-col gap-4 pt-8" style="margin-top: 15px; text-align: center">
+<div class="position-relative mx-auto container flex flex-col gap-4 pt-8" style="margin-top: 10px; text-align: center">
     <div class ="rounded-lg p-4 flex flex-col gap-4 mx-auto bg-base-100;" >
     
-        <h1 style="padding-bottom: 10px; font-size: 40px;" class="font-monospace fw-semibold text-center">New Task</h1>
-    
+        <h1 style="padding-bottom: 10px; font-size: 40px;" class="font-monospace fw-semibold text-center">Your New Task</h1>
+        <h2 style="font-size: 18px; padding-bottom: 40px; padding-top: 40px; padding-left: 20px; padding-right: 20px;background-image: url('https://i.ibb.co/qMGPg9K/gradient-blur-pink-blue-abstract-background-53876-117324.jpg');">
+
         <form method="POST" action="" style="display: inline-block;">
             {% csrf_token %}
             <table>

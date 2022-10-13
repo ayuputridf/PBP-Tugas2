@@ -4,14 +4,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from todolist.models import Task
-from todolist.forms import TaskForm
+from todolist.models import ToDoList
+from todolist.forms import ToDoListForm 
 from datetime import date
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    data = Task.objects.filter(user=request.user).all()
+    data = ToDoList.objects.filter(user=request.user).all()
     context = {
         'isi_todo_list': data,
         'name': 'Ayu Putri',
@@ -20,31 +20,31 @@ def show_todolist(request):
     return render(request, "todolist.html", context)
 
 def create_task(request):
-    form = TaskForm()
+    form = ToDoListForm()
     if request.method == 'POST':
-        form = TaskForm(request.POST)
+        form = ToDoListForm(request.POST)
         if form.is_valid():
-            task = Task(
+            data = ToDoList(
                 date = str(date.today()),
                 title = form.cleaned_data["task_title"],
                 description = form.cleaned_data["task_description"],
                 user = request.user,
             )
-            task.save()
-            messages.success(request, 'Task berhasil dibentuk')
+            data.save()
+            messages.success(request, 'Your task successfully created!')
             return redirect('todolist:show_todolist')
     context = {"form": form}
     return render(request, 'create_task.html', context)
 
-def delete_task(request, id):
-    Task.objects.get(pk=id).delete()
+def hapus_task(request, id):
+    ToDoList.objects.get(pk=id).delete()
     return redirect('todolist:show_todolist')
 
-def change_status(request, id):
-    task = Task.objects.get(pk=id) 
-    if (not task.is_finished):
-        task.is_finished = True
-    task.save()
+def ubah_status(request, id):
+    data = ToDoList.objects.get(pk=id) 
+    if (not data.is_finished):
+        data.is_finished = True
+    data.save()
     return redirect('todolist:show_todolist')
 
 def register(request):
@@ -53,7 +53,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Akun telah berhasil dibuat!')
+            messages.success(request, 'Account successfully created!')
             return redirect('todolist:login')
     
     context = {'form':form}
@@ -68,11 +68,11 @@ def login_user(request):
             login(request, user)
             return redirect('todolist:show_todolist')
         else:
-            messages.info(request, 'Username atau Password salah!')
+            messages.info(request, 'Wrong Username or Password, try again!')
     context = {}
     return render(request, 'login.html', context)
 
 def logout_user(request):
     logout(request)
-    messages.info(request, 'Berhasil logout')
+    messages.info(request, 'Successfully logout, see ya!^^')
     return redirect('todolist:login')
