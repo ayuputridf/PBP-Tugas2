@@ -3,10 +3,8 @@
 Nama    : Ayu Putri Dewi Fitriyani
 NPM     : 2106654845
 
-[Link to App (login)](https://pbp-todolist-ayu.herokuapp.com/todolist/login/)
-[Link to App (register)](https://pbp-todolist-ayu.herokuapp.com/todolist/login/)
-[Link to App (create-task)](https://pbp-todolist-ayu.herokuapp.com/todolist/register/create-task/)
-[Link to App (logout)](https://pbp-todolist-ayu.herokuapp.com/todolist/logout/)
+* [Link to App (login)](https://pbp-todolist-ayu.herokuapp.com/todolist/login/)
+* [Link to App (register)](https://pbp-todolist-ayu.herokuapp.com/todolist/login/)
 
 
 ## Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
