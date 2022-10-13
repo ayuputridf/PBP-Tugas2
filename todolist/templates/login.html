@@ -6,25 +6,27 @@
 
 {% block content %}
 
+
 <div class="position-relative" style="margin-top: 150px; text-align: center;">
-    <div class ="login position-absolute top-50 start-50 translate-middle" >
-        <h1 style="padding-top: 10px; padding-bottom: 10px; font-size: 40px;" class="font-Cursive fw-semibold text-center">Login</h1>
+    <div class ="login position-absolute top-50 start-50 translate-middle">
+        <h1 style="padding-top: 200px; padding-bottom: 10px; font-size: 30px;" class="font-Fantasy fw-semibold text-center">Login</h1>
+        <h2 style="font-size: 18px; padding-bottom: 40px; padding-top: 40px; padding-left: 40px; padding-right: 40px;background-image: url('https://i.ibb.co/qMGPg9K/gradient-blur-pink-blue-abstract-background-53876-117324.jpg');">
 
         <form method="POST" action="">
             {% csrf_token %}
             <table style="width: 100%;">
                 <tr>
-                    <td>Username: </td>
+                    <td>Username : </td>
                     <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
                 </tr>
                         
                 <tr>
-                    <td>Password: </td>
+                    <td>Password : </td>
                     <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
                 </tr>
     
                 <tr>
-                    <td colspan="2"><input style="width: 85%; margin-top: 20px; margin-bottom: 7px;" class="btn login_btn btn btn-dark" type="submit" value="Login"></td>
+                    <td colspan="2"><input style="width: 85%; margin-top: 20px; margin-bottom: 8px;" class="btn login_btn btn btn-dark" type="submit" value="Login"></td>
                 </tr>
             </table>
         </form>

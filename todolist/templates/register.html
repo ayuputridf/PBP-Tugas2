@@ -6,55 +6,19 @@
 
 {% block content %}  
 
-<style>
-    *{ 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-} 
- 
- 
-.container{ 
-    width: 90%; 
-    margin: auto; 
-} 
- 
-.input-group{ 
-    position: relative; 
-    margin-bottom: 5px; 
-} 
- 
-.form-input{ 
-    padding: 10px; 
-    width: 100%; 
-    border-radius: 10px; 
-    text-indent: 0%; 
-} 
- 
-
-</style>
-
 <div class = "login container">
-    
-    <h1 class="font-monospace fw-semibold text-center" style="margin-top: 20px;">Formulir Registrasi</h1>  
-
-        <div style="padding-top: 15px;">
-
-            <form method="POST" >  
-                {% csrf_token %}  
-                <div class="input-group"> 
-                    <input required name="username" id="username" type="text" class="form-input" placeholder="username" maxlength="16" minlength="6"> 
-                </div>
-                <div class="input-group"> 
-                    <input required name="password1" id="password1" type="password" class="form-input" placeholder="password" maxlength="22" minlength="8"> 
-                </div> 
-                <div class="input-group"> 
-                    <input required name="password2" id="password2" type="password" class="form-input" placeholder="password confirmation" maxlength="22" minlength="8"> 
-                </div> 
-                <input type="submit" style="margin-top: 15px; width: 100%;" class="btn btn-dark" name="submit" value="Daftar"/>
-            </form>
-        </div>
-
+    <h1 style="padding-top: 10px; padding-bottom: 10px; font-size: 30px;" class="font-Fantasy fw-semibold text-center">Formulir Registrasi</h1>
+    <h2 style="font-size: 18px; padding-bottom: 40px; padding-top: 40px; padding-left: 40px; padding-right: 40px;background-image: url('https://i.ibb.co/qMGPg9K/gradient-blur-pink-blue-abstract-background-53876-117324.jpg');">
+        <form method="POST" >  
+            {% csrf_token %}  
+            <table>  
+                {{ form.as_table }}  
+                <tr>  
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Daftar"/></td>  
+                </tr>  
+            </table>  
+        </form>
 
     {% if messages %}  
         <ul>   
